@@ -2,14 +2,10 @@ package top.xukenan.springcloud.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
-import top.xukenan.springcloud.entity.Payment;
 import top.xukenan.springcloud.service.PaymentService;
+import top.xukenan.springcloud.entity.Payment;
 import top.xukenan.springcloud.web.JsonResult;
-
-import java.util.List;
 
 /**
  * For the brave souls who get this far: You are the chosen ones,
@@ -33,8 +29,6 @@ public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
-    @Autowired
-    private DiscoveryClient discoveryClient;
 
 
     @GetMapping("detail/{id}")
@@ -49,19 +43,5 @@ public class PaymentController {
         } else {
             return JsonResult.failMessage("插入失败");
         }
-    }
-
-
-    @GetMapping("discovery")
-    public Object discovery() {
-        List<String> services = discoveryClient.getServices();
-        services.forEach(System.out::println);
-
-        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
-        instances.forEach(instance -> {
-            System.out.println(instance.getServiceId() + "\t" + instance.getHost() + "\t" + instance.getPort() + "\t" + instance.getUri());
-        });
-
-        return this.discoveryClient;
     }
 }
