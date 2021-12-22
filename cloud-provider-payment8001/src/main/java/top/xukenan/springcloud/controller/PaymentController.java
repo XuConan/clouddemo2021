@@ -25,13 +25,13 @@ import top.xukenan.springcloud.web.JsonResult;
 @RestController
 @Slf4j
 @RequestMapping("payment")
-public class PaymengController {
+public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
 
 
-    @GetMapping("gdetail/{id}")
+    @GetMapping("detail/{id}")
     public JsonResult Detail(@PathVariable("id") Long id) {
         return JsonResult.success(paymentService.getById(id));
     }

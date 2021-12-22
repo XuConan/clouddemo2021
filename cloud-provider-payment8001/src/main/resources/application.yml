@@ -13,10 +13,6 @@ spring:
 
 mybatis-plus:
   configuration:
+    autoMappingBehavior: full
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    map-underscore-to-camel-case: true
     object-wrapper-factory: com.baomidou.mybatisplus.extension.MybatisMapWrapperFactory
-  global-config:
-    db-config:
-      logic-delete-value: 1
-      logic-not-delete-value: 0
